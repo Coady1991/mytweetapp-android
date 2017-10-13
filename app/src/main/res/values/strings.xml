@@ -3,6 +3,6 @@
     <string name="tweetText">What\'s happening?</string>
     <string name="tweetButton">Tweet</string>
 
-    <string name="menuTimeline">Timeline</string>
+    <string name="timeline">Timeline</string>
     <string name="menuSettings">Settings</string>
 </resources>
