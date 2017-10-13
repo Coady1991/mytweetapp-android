@@ -1,5 +1,6 @@
 package coady.mytweetapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +31,8 @@ public class Tweet extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.menuTimeline:
-                Toast.makeText(this, "Timeline Selected", Toast.LENGTH_SHORT).show();
+            case R.id.timeline:
+                startActivity(new Intent(this, Timeline.class));
                 break;
             case R.id.menuSettings:
                 Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show();
