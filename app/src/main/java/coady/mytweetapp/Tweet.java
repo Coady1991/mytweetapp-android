@@ -15,16 +15,21 @@ import android.widget.Toast;
 public class Tweet extends AppCompatActivity {
 
     private Button tweetButton;
+    private TweetApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet);
 
+        app = (TweetApp) getApplication();
+
         tweetButton = (Button) findViewById(R.id.tweetButton);
     }
 
     public void tweetButtonPressed (View view) {
+        Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
+        toast.show();
         Log.v("Tweet", "Tweet Pressed!");
     }
 
