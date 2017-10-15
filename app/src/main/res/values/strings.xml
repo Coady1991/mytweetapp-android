@@ -19,4 +19,10 @@
     <string name="signupPassword">Password</string>
     <string name="signupRegister">Register</string>
 
+    <string name="loginTitle">Login to MyTweet</string>
+    <string name="loginSubtitle">You must be registered</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginPassword">Password</string>
+    <string name="loginSignIn">Sign In</string>
+
 </resources>

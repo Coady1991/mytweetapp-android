@@ -18,4 +18,3 @@ public class Login extends AppCompatActivity {
         startActivity (new Intent(this, Tweet.class));
     }
 }
-}

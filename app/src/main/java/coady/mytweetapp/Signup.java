@@ -14,6 +14,6 @@ public class Signup extends AppCompatActivity {
     }
 
     public void signupPressed (View view) {
-        startActivity (new Intent(this, Tweet.class));
+        startActivity (new Intent(this, Welcome.class));
     }
 }
