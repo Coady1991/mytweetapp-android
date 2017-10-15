@@ -10,4 +10,13 @@
     <string name="menuSettings">Settings</string>
 
     <string name="defaultTweet">No Tweets</string>
+
+    <string name="signupTitle">Sign up for the MyTweetApp</string>
+    <string name="signupSubtitle">Enter details below</string>
+    <string name="signupFirstName">First Name</string>
+    <string name="signupLastName">Last Name</string>
+    <string name="signupEmail">Email</string>
+    <string name="signupPassword">Password</string>
+    <string name="signupRegister">Register</string>
+
 </resources>
