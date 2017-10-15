@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyTweetApp</string>
     <string name="tweetText">What\'s happening?</string>
-    <string name="tweetButton">Tweet</string>
+    <string name="tweet">Tweet</string>
 
     <string name="timeline">Timeline</string>
     <string name="menuSettings">Settings</string>
