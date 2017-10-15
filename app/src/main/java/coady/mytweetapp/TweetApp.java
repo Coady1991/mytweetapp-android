@@ -11,13 +11,17 @@ public class TweetApp extends Application {
 
     public final int limit = 140;
     public int totalTweet = 0;
-    public List<Tweet> tweets = new ArrayList<Tweet>();
+    public List<Tweeting> tweets = new ArrayList<Tweeting>();
 
-    public boolean newTweet(Tweet tweets) {
+    public Boolean newTweet(Tweeting tweet) {
         boolean limitAchieved = totalTweet > limit;
 
-        Toast toast = Toast.makeText(this, "Character Limit Exceeded!", Toast.LENGTH_SHORT);
-        toast.show();
+        if(!limitAchieved) {
+            tweets.add(tweet);
+        } else {
+            Toast toast = Toast.makeText(this, "Limit Exceeded!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
 
         return limitAchieved;
     }

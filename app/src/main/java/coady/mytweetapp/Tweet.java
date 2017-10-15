@@ -9,12 +9,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
 public class Tweet extends AppCompatActivity {
 
     private Button tweetButton;
+    private EditText tweetText;
     private TweetApp app;
 
     @Override
@@ -25,12 +27,24 @@ public class Tweet extends AppCompatActivity {
         app = (TweetApp) getApplication();
 
         tweetButton = (Button) findViewById(R.id.tweetButton);
+        tweetText = (EditText) findViewById(R.id.tweetText);
     }
 
     public void tweetButtonPressed (View view) {
-        Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
-        toast.show();
-        Log.v("Tweet", "Tweet Pressed!");
+        String text = tweetText.getText().toString();
+        if(text.equals("")) {
+            Toast toast = Toast.makeText(this, "Tweet must contain characters", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        if(!text.equals("")) {
+            app.newTweet(new Tweeting(text));
+
+            Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
+            toast.show();
+            Log.v("Tweet", "Tweet Pressed!");
+        }
+
     }
 
     @Override
