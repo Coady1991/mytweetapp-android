@@ -12,6 +12,7 @@ public class TweetApp extends Application {
     public final int limit = 140;
     public int totalTweet = 0;
     public List<Tweeting> tweets = new ArrayList<Tweeting>();
+    public List<User> users = new ArrayList<User>();
 
     public Boolean newTweet(Tweeting tweet) {
         boolean limitAchieved = totalTweet > limit;
@@ -24,6 +25,10 @@ public class TweetApp extends Application {
         }
 
         return limitAchieved;
+    }
+
+    public void newUser(User user) {
+        users.add(user);
     }
 
     @Override
