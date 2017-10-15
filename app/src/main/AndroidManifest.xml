@@ -28,6 +28,12 @@
             android:name="coady.mytweetapp.Timeline"
             android:label="@string/timeline" >
         </activity>
+
+        <activity
+            android:name="coady.mytweetapp.Signup"
+            android:label="@string/app_name">
+        </activity>
+
     </application>
 
 </manifest>
