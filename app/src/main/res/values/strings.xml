@@ -3,6 +3,9 @@
     <string name="tweetText">What\'s happening?</string>
     <string name="tweet">Tweet</string>
 
+    <string name="welcomeLogin">Login</string>
+    <string name="welcomeSignup">SignUp</string>
+
     <string name="timeline">Timeline</string>
     <string name="menuSettings">Settings</string>
 
