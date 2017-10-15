@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:text="@string/welcomeLogin"
+        android:onClick="loginPressed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/welcomeSignup"
+        android:onClick="signupPressed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeLogin" />
