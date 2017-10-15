@@ -44,6 +44,7 @@ public class Tweet extends AppCompatActivity {
             toast.show();
             Log.v("Tweet", "Tweet Pressed!");
         }
+        tweetText.getText().clear();
 
     }
 
