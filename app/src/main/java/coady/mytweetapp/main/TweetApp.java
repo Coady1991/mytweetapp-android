@@ -11,23 +11,12 @@ import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.model.User;
 
 public class TweetApp extends Application {
-
-    public final int limit = 140;
-    public int totalTweet = 0;
+    
     public List<Tweeting> tweets = new ArrayList<Tweeting>();
     public List<User> users = new ArrayList<User>();
 
-    public Boolean newTweet(Tweeting tweet) {
-        boolean limitAchieved = totalTweet > limit;
-
-        if(!limitAchieved) {
-            tweets.add(tweet);
-        } else {
-            Toast toast = Toast.makeText(this, "Limit Exceeded!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        return limitAchieved;
+    public void newTweet(Tweeting tweet) {
+        tweets.add(tweet);
     }
 
     public void newUser(User user) {
