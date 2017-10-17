@@ -1,4 +1,4 @@
-package coady.mytweetapp;
+package coady.mytweetapp.model;
 
 
 public class Tweeting {

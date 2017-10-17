@@ -1,4 +1,4 @@
-package coady.mytweetapp;
+package coady.mytweetapp.main;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,6 +6,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import coady.mytweetapp.model.Tweeting;
+import coady.mytweetapp.model.User;
 
 public class TweetApp extends Application {
 

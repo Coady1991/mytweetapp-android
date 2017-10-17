@@ -1,10 +1,15 @@
-package coady.mytweetapp;
+package coady.mytweetapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import coady.mytweetapp.R;
+import coady.mytweetapp.activity.Welcome;
+import coady.mytweetapp.main.TweetApp;
+import coady.mytweetapp.model.User;
 
 public class Signup extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package coady.mytweetapp;
+package coady.mytweetapp.activity;
 
 
 import android.content.Context;
@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import coady.mytweetapp.R;
+import coady.mytweetapp.model.Tweeting;
+import coady.mytweetapp.main.TweetApp;
 
 public class Timeline extends AppCompatActivity {
 

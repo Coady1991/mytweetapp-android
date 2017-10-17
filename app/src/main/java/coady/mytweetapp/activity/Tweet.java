@@ -1,4 +1,4 @@
-package coady.mytweetapp;
+package coady.mytweetapp.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import coady.mytweetapp.R;
+import coady.mytweetapp.model.Tweeting;
+import coady.mytweetapp.main.TweetApp;
 
 
 public class Tweet extends AppCompatActivity {
