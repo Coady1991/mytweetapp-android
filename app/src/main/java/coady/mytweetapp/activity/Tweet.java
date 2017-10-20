@@ -43,12 +43,12 @@ public class Tweet extends AppCompatActivity {
         tweetText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                counter.setText(String.valueOf(140 - (tweetText.getText().toString().length())));
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                counter.setText(String.valueOf(140 - (tweetText.getText().toString().length())));
             }
 
             @Override
