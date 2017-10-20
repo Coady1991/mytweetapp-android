@@ -12,17 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
 
+import static coady.mytweetapp.R.attr.title;
+
 
 public class Tweet extends AppCompatActivity {
 
     private Button tweetButton;
     private EditText tweetText;
+    private TextView counter;
     private TweetApp app;
 
     @Override
@@ -34,6 +38,24 @@ public class Tweet extends AppCompatActivity {
 
         tweetButton = (Button) findViewById(R.id.tweetButton);
         tweetText = (EditText) findViewById(R.id.tweetText);
+        counter = (TextView) findViewById(R.id.counter);
+
+        tweetText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                counter.setText(String.valueOf(140 - (tweetText.getText().toString().length())));
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     public void tweetButtonPressed (View view) {
