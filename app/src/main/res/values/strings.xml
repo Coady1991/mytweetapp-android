@@ -2,6 +2,7 @@
     <string name="app_name">MyTweetApp</string>
     <string name="tweetText">What\'s happening?</string>
     <string name="tweet">Tweet</string>
+    <string name="date" />
 
     <string name="welcomeLogin">Login</string>
     <string name="welcomeSignup">SignUp</string>
