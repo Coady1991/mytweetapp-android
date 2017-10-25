@@ -27,6 +27,8 @@
         <activity
             android:name="coady.mytweetapp.activity.Timeline"
             android:label="@string/timeline" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="coady.mytweetapp.activity.Tweet"/>
         </activity>
 
         <activity

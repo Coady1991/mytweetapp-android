@@ -24,6 +24,8 @@ import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
 
+import static coady.mytweetapp.android.helpers.IntentHelper.navigateUp;
+
 public class Timeline extends AppCompatActivity {
 
     private ListView listView;
@@ -33,6 +35,7 @@ public class Timeline extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         app = (TweetApp) getApplication();
 
@@ -47,17 +50,21 @@ public class Timeline extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.tweet: startActivity(new Intent(this, Tweet.class));
-                break;
+            //case R.id.tweet: startActivity(new Intent(this, Tweet.class));
+                //break;
             case R.id.menuSettings:  Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menuLogout:   startActivity(new Intent(this, Welcome.class));
                 break;
+            case android.R.id.home:  navigateUp(this);
+                return true;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
 
