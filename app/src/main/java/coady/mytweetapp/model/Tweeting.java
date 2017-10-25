@@ -7,13 +7,13 @@ import java.util.Random;
 public class Tweeting {
 
     public String tweet;
-    private Long date;
+    public String date;
     private Long id;
 
-    public Tweeting(String tweet){
+    public Tweeting(String tweet, String date){
         id = unsignedLong();
         this.tweet = tweet;
-        date = new Date().getTime();
+        this.date = date;
     }
 
     /**

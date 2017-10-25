@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
@@ -28,6 +31,7 @@ public class Tweet extends AppCompatActivity {
     private EditText tweetText;
     private TextView counter;
     private TweetApp app;
+    private TextView tweetDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,11 @@ public class Tweet extends AppCompatActivity {
         tweetButton = (Button) findViewById(R.id.tweetButton);
         tweetText = (EditText) findViewById(R.id.tweetText);
         counter = (TextView) findViewById(R.id.counter);
+        tweetDate = (TextView) findViewById(R.id.tweetDate);
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        tweetDate.setText(currentDateTimeString);
+
 
         tweetText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,13 +69,14 @@ public class Tweet extends AppCompatActivity {
 
     public void tweetButtonPressed (View view) {
         String text = tweetText.getText().toString();
+        String date = tweetDate.getText().toString();
         if(text.equals("")) {
             Toast toast = Toast.makeText(this, "Tweet must contain characters", Toast.LENGTH_SHORT);
             toast.show();
         }
 
         if(!text.equals("")) {
-            app.newTweet(new Tweeting(text));
+            app.newTweet(new Tweeting(text, date));
 
             Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
             toast.show();

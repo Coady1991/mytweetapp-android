@@ -78,12 +78,10 @@ class TweetAdapter extends ArrayAdapter<Tweeting> {
         View view = inflater.inflate(R.layout.row_layout, parent, false);
         Tweeting tweet = tweets.get(position);
         TextView tweetView = (TextView) view.findViewById(R.id.row_tweet);
-        TextView date = (TextView) view.findViewById(R.id.date);
+        TextView tweetDate = (TextView) view.findViewById(R.id.date);
 
         tweetView.setText(tweet.tweet);
-        Date now = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yy hh:mm a");
-        date.setText("Posted " + sf.format(now));
+        tweetDate.setText(tweet.date);
 
         return view;
     }
