@@ -28,4 +28,7 @@
     <string name="loginPassword">Password</string>
     <string name="loginSignIn">Sign In</string>
 
+    <string name="contact">Contact</string>
+    <string name="sendEmail">Email Tweet</string>
+
 </resources>
