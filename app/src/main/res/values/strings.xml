@@ -35,4 +35,5 @@
     <string name="username_summary">Please enter your Email here</string>
     <string name="password_summary">Please enter your Password here</string>
 
+    <string name="deleteTweet">Delete Tweet</string>
 </resources>

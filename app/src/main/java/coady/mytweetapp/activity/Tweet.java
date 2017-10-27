@@ -95,14 +95,13 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
         }
 
         if(!text.equals("")) {
-            tweet = new Tweeting(text, date);
-            app.newTweet(tweet);
+            app.newTweet(new Tweeting(text, date));
 
             Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
             toast.show();
             Log.v("Tweet", "Tweet Pressed!");
         }
-        tweetText.getText().clear();
+        tweetText.setText("");
     }
 
     @Override
