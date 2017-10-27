@@ -18,8 +18,8 @@
     <string name="signupSubtitle">Enter details below</string>
     <string name="signupFirstName">First Name</string>
     <string name="signupLastName">Last Name</string>
-    <string name="signupEmail">Email</string>
-    <string name="signupPassword">Password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="signupRegister">Register</string>
 
     <string name="loginTitle">Login to MyTweet</string>
@@ -31,5 +31,8 @@
     <string name="contact">Contact</string>
     <string name="sendEmail">Email Tweet</string>
     <string name="newTweet">My New Tweet</string>
+
+    <string name="username_summary">Please enter your Email here</string>
+    <string name="password_summary">Please enter your Password here</string>
 
 </resources>

@@ -22,6 +22,7 @@ import java.util.Date;
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
+import coady.mytweetapp.settings.SettingsActivity;
 
 import static coady.mytweetapp.R.attr.title;
 import static coady.mytweetapp.R.string.tweet;
@@ -111,8 +112,8 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, Timeline.class));
                 break;
             case R.id.menuSettings:
-                Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show();
-                break;
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             case R.id.menuLogout:   startActivity(new Intent(this, Welcome.class));
                 break;
         }

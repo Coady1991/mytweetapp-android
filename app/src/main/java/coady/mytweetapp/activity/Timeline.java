@@ -23,6 +23,7 @@ import java.util.List;
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
+import coady.mytweetapp.settings.SettingsActivity;
 
 import static coady.mytweetapp.android.helpers.IntentHelper.navigateUp;
 
@@ -57,11 +58,14 @@ public class Timeline extends AppCompatActivity {
         switch (item.getItemId()) {
             //case R.id.tweet: startActivity(new Intent(this, Tweet.class));
                 //break;
-            case R.id.menuSettings:  Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show();
+            case R.id.menuSettings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.menuLogout:
+                startActivity(new Intent(this, Welcome.class));
                 break;
-            case R.id.menuLogout:   startActivity(new Intent(this, Welcome.class));
-                break;
-            case android.R.id.home:  navigateUp(this);
+            case android.R.id.home:
+                navigateUp(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
