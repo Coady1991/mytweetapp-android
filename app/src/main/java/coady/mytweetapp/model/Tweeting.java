@@ -1,5 +1,6 @@
 package coady.mytweetapp.model;
 
+import android.content.Context;
 
 import java.util.Date;
 import java.util.Random;
@@ -10,11 +11,16 @@ public class Tweeting {
     public String date;
     private Long id;
 
-    public Tweeting(String tweet, String date){
+    public Tweeting(String tweet, String date) {
         id = unsignedLong();
         this.tweet = tweet;
         this.date = date;
     }
+
+    /*public String getTweetReport () {
+        String report = "Tweet: " + tweet + " Date: " + date;
+        return report;
+    }*/
 
     /**
      * Generate a long greater than zero

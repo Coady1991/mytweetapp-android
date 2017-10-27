@@ -1,5 +1,6 @@
 package coady.mytweetapp.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,15 +24,27 @@ import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
 
 import static coady.mytweetapp.R.attr.title;
+import static coady.mytweetapp.R.string.tweet;
+import static coady.mytweetapp.android.helpers.ContactHelper.getContact;
+import static coady.mytweetapp.android.helpers.ContactHelper.getEmail;
+import static coady.mytweetapp.android.helpers.ContactHelper.sendEmail;
+import static coady.mytweetapp.android.helpers.IntentHelper.selectContact;
 
 
-public class Tweet extends AppCompatActivity {
+public class Tweet extends AppCompatActivity implements View.OnClickListener {
+
+    private static final int REQUEST_CONTACT = 1;
 
     private Button tweetButton;
     private EditText tweetText;
     private TextView counter;
     private TweetApp app;
     private TextView tweetDate;
+    private Button   contactButton;
+    private Button emailButton;
+    private String emailAddress = "";
+    private String emailBody = "";
+    private Tweeting tweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,11 @@ public class Tweet extends AppCompatActivity {
         tweetText = (EditText) findViewById(R.id.tweetText);
         counter = (TextView) findViewById(R.id.counter);
         tweetDate = (TextView) findViewById(R.id.tweetDate);
+        contactButton = (Button) findViewById(R.id.contact);
+        emailButton = (Button) findViewById(R.id.sendEmail);
+
+        contactButton.setOnClickListener(this);
+        emailButton.setOnClickListener(this);
 
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         tweetDate.setText(currentDateTimeString);
@@ -76,7 +94,8 @@ public class Tweet extends AppCompatActivity {
         }
 
         if(!text.equals("")) {
-            app.newTweet(new Tweeting(text, date));
+            tweet = new Tweeting(text, date);
+            app.newTweet(tweet);
 
             Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
             toast.show();
@@ -111,6 +130,32 @@ public class Tweet extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void onClick(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.contact : selectContact(this, REQUEST_CONTACT);
+                break;
+            case R.id.sendEmail:
+                sendEmail(this, emailAddress,
+                        getString(R.string.newTweet), tweetText.getText().toString());
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode)
+        {
+            case REQUEST_CONTACT:
+                String name = getContact(this, data);
+                emailAddress = getEmail(this, data);
+                contactButton.setText(name + " : " + emailAddress);
+                //residence.tenant = name;
+                break;
+        }
     }
 }
 
