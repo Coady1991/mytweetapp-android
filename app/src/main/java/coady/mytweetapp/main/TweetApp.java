@@ -13,7 +13,7 @@ import coady.mytweetapp.model.UserPortfolio;
 import coady.mytweetapp.model.UserSerializer;
 
 public class TweetApp extends Application {
-    
+
     public List<Tweeting> tweets = new ArrayList<Tweeting>();
     public ArrayList<User> users = new ArrayList<User>();
     private static final String FILENAME = "userportfolio.json";

@@ -158,4 +158,3 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
         }
     }
 }
-

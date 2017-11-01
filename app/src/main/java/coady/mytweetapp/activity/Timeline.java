@@ -2,14 +2,19 @@ package coady.mytweetapp.activity;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +37,7 @@ public class Timeline extends AppCompatActivity {
 
     private ListView listView;
     private TweetApp app;
+    private final Context context = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +48,47 @@ public class Timeline extends AppCompatActivity {
         app = (TweetApp) getApplication();
 
         listView = (ListView) findViewById(R.id.timelineList);
-        TweetAdapter adapter = new TweetAdapter(this, app.tweets);
+        final TweetAdapter adapter = new TweetAdapter(this, app.tweets);
         listView.setAdapter(adapter);
+
+
+//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public void onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                adapter.remove(adapter.getItem(i));
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+
+        listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Do you want to delete this tweet?");
+                builder.setCancelable(false);
+                //Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int j) {
+                        adapter.remove(adapter.getItem(i));
+                        //Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
+
+                        Toast.makeText(getApplicationContext(), "Tweet has been removed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -95,5 +141,10 @@ class TweetAdapter extends ArrayAdapter<Tweeting> {
         tweetDate.setText(tweet.date);
 
         return view;
+    }
+
+    @Override
+    public int getCount() {
+        return tweets.size();
     }
 }
