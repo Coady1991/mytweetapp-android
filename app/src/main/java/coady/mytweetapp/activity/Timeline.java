@@ -60,6 +60,7 @@ public class Timeline extends AppCompatActivity {
 //            }
 //        });
 
+        // http://piyushovte.blogspot.ie/2011/03/listview-data-select-and-delete.html
         listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {

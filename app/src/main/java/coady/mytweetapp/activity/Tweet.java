@@ -64,10 +64,11 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
         contactButton.setOnClickListener(this);
         emailButton.setOnClickListener(this);
 
+        // https://stackoverflow.com/questions/2271131/display-the-current-time-and-date-in-an-android-application
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         tweetDate.setText(currentDateTimeString);
 
-
+        // https://stackoverflow.com/questions/24110265/android-create-count-down-word-field-when-user-type-in-edittext
         tweetText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -120,6 +121,7 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
+    // https://stackoverflow.com/questions/5914040/onbackpressed-to-hide-not-destroy-activity
     public void onBackPressed() {
         moveTaskToBack(true);
     }

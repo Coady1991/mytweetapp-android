@@ -31,6 +31,7 @@ public class Signup extends AppCompatActivity {
 
         String pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
+        // http://www.donnfelker.com/android-validation-with-edittext/ Used to validate input and return error
         if(firstName.getText().toString().length() == 0) {
             firstName.setError("First name is required");
         } else if(lastName.getText().toString().length() == 0) {

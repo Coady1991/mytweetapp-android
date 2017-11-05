@@ -24,6 +24,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     @Override
+    // https://stackoverflow.com/questions/5914040/onbackpressed-to-hide-not-destroy-activity
     public void onBackPressed() {
         moveTaskToBack(true);
     }
