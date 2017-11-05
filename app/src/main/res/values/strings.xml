@@ -9,6 +9,9 @@
     <string name="welcomeSignup">SignUp</string>
     <string name="menuLogout">Logout</string>
 
+    <string name="welcomeText">Welcome to MyTweet</string>
+    <string name="welcomeMessage">See what\'s happening in the great WIT world right now!</string>
+
     <string name="timeline">Timeline</string>
     <string name="menuSettings">Settings</string>
 

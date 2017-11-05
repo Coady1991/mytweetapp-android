@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="coady.mytweetapp.activity.Login">
+    tools:context="coady.mytweetapp.activity.Login"
+    android:background="@color/DeepSkyBlue">
 
     <TextView
         android:id="@+id/loginTitle"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/loginTitle"
         android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/white"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="16dp"
@@ -29,6 +31,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/loginSubtitle"
         android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTitle"
