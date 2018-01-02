@@ -12,13 +12,19 @@ import coady.mytweetapp.R;
 import coady.mytweetapp.activity.Welcome;
 import coady.mytweetapp.main.TweetApp;
 import coady.mytweetapp.model.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class Signup extends AppCompatActivity {
+public class Signup extends AppCompatActivity implements Callback<User> {
+
+    private TweetApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        app = (TweetApp) getApplication();
     }
 
     public void signupPressed (View view) {
@@ -44,9 +50,23 @@ public class Signup extends AppCompatActivity {
             User user = new User (firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString());
 
             TweetApp app = (TweetApp) getApplication();
-            app.newUser(user);
-
-            startActivity (new Intent(this, Welcome.class));
+            Call<User> call = (Call<User>) app.tweetService.createUser(user);
+            call.enqueue(this);
         }
+    }
+
+    @Override
+    public void onResponse(Call<User> call, Response<User> response) {
+        app.users.add(response.body());
+        startActivity(new Intent(this, Welcome.class));
+    }
+
+    @Override
+    public void onFailure(Call<User> call, Throwable t) {
+        app.tweetServiceAvailable = false;
+        Toast toast = Toast.makeText(this, "MyTweet Service Unavailable. Try again later", Toast.LENGTH_LONG);
+        toast.show();
+        startActivity (new Intent(this, Welcome.class));
+
     }
 }

@@ -1,5 +1,5 @@
 package coady.mytweetapp.model;
-
+/*
 import java.util.ArrayList;
 
 import static coady.mytweetapp.android.helpers.LogHelpers.info;
@@ -29,3 +29,4 @@ public class UserPortfolio {
         }
     }
 }
+*/

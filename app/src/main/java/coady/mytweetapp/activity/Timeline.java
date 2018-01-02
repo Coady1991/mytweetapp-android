@@ -21,22 +21,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 import coady.mytweetapp.R;
+import coady.mytweetapp.main.TweetService;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
 import coady.mytweetapp.settings.SettingsActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static coady.mytweetapp.android.helpers.IntentHelper.navigateUp;
 
-public class Timeline extends AppCompatActivity {
+public class Timeline extends AppCompatActivity  implements Callback<List<Tweeting>> {
 
     private ListView listView;
     private TweetApp app;
+    private TweetAdapter adapter;
+    private String selectedItem;
+    private List<Tweeting> holder = new ArrayList<Tweeting>();
     private final Context context = this;
 
     @Override
@@ -48,8 +59,12 @@ public class Timeline extends AppCompatActivity {
         app = (TweetApp) getApplication();
 
         listView = (ListView) findViewById(R.id.timelineList);
-        final TweetAdapter adapter = new TweetAdapter(this, app.tweets);
+        adapter = new TweetAdapter(this, app.tweets);
         listView.setAdapter(adapter);
+
+        Call<List<Tweeting>> call = (Call<List<Tweeting>>) app.tweetService.getAllTweets();
+        call.enqueue(this);
+
 
 
 //        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -62,8 +77,9 @@ public class Timeline extends AppCompatActivity {
 
         // http://piyushovte.blogspot.ie/2011/03/listview-data-select-and-delete.html
         listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {
+
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+            public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int i, long l) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Do you want to delete this tweet?");
@@ -71,13 +87,14 @@ public class Timeline extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
+                    // Due to getting tweets from API issue here with deleting a tweet
                     @Override
                     public void onClick(DialogInterface dialogInterface, int j) {
-                        adapter.remove(adapter.getItem(i));
+                        //adapter.remove(adapter.getItem(i));
                         //Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
 
-                        Toast.makeText(getApplicationContext(), "Tweet has been removed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Unable to delete tweet at this time, sorry!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -117,11 +134,23 @@ public class Timeline extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onResponse(Call<List<Tweeting>> call, Response<List<Tweeting>> response) {
+        adapter.tweets = response.body();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onFailure(Call<List<Tweeting>> call, Throwable t) {
+        Toast toast = Toast.makeText(this, "Error retrieving tweets", Toast.LENGTH_LONG);
+        toast.show();
+    }
 }
 
 class TweetAdapter extends ArrayAdapter<Tweeting> {
     private Context context;
-    public List<Tweeting> tweets;
+    public List<Tweeting> tweets = new ArrayList<Tweeting> ();
 
     public TweetAdapter(Context context, List<Tweeting> tweets) {
         super(context, R.layout.row_layout, tweets);
@@ -135,6 +164,23 @@ class TweetAdapter extends ArrayAdapter<Tweeting> {
 
         View view = inflater.inflate(R.layout.row_layout, parent, false);
         Tweeting tweet = tweets.get(position);
+
+        // Sorts tweets with newest first
+        // https://stackoverflow.com/questions/2592501/how-to-compare-dates-in-java#answer-21085919
+//        Collections.sort(tweets, new Comparator<Tweeting>() {
+//            @Override
+//            public int compare(Tweeting t1, Tweeting t2) {
+//
+//                if (t1.date.compareTo(t2.date) > 0) {
+//                    return 1;
+//                } else if (t1.date.compareTo(t2.date) <0) {
+//                    return -1;
+//                } else {
+//                    return 0;
+//                }
+//
+//            }
+//        });
         TextView tweetView = (TextView) view.findViewById(R.id.row_tweet);
         TextView tweetDate = (TextView) view.findViewById(R.id.date);
 

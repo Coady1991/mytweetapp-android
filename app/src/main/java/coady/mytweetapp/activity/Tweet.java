@@ -17,12 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 import coady.mytweetapp.main.TweetApp;
 import coady.mytweetapp.settings.SettingsActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static coady.mytweetapp.R.attr.title;
 import static coady.mytweetapp.R.string.tweet;
@@ -32,7 +38,7 @@ import static coady.mytweetapp.android.helpers.ContactHelper.sendEmail;
 import static coady.mytweetapp.android.helpers.IntentHelper.selectContact;
 
 
-public class Tweet extends AppCompatActivity implements View.OnClickListener {
+public class Tweet extends AppCompatActivity implements View.OnClickListener, Callback<Tweeting> {
 
     private static final int REQUEST_CONTACT = 1;
 
@@ -65,8 +71,16 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
         emailButton.setOnClickListener(this);
 
         // https://stackoverflow.com/questions/2271131/display-the-current-time-and-date-in-an-android-application
-        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        //String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        //tweetDate.setText(currentDateTimeString);
+
+        // http://www.technotalkative.com/android-get-current-date-and-time-in-different-format/
+        // To match the same format as the MyTweet Web App
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df1 = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss");
+        String currentDateTimeString = df1.format(c.getTime());
         tweetDate.setText(currentDateTimeString);
+
 
         // https://stackoverflow.com/questions/24110265/android-create-count-down-word-field-when-user-type-in-edittext
         tweetText.addTextChangedListener(new TextWatcher() {
@@ -96,10 +110,13 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
         }
 
         if(!text.equals("")) {
-            app.newTweet(new Tweeting(text, date));
+            Tweeting tweet = new Tweeting(text, date);
+            //app.newTweet(new Tweeting(text, date));
+            Call<Tweeting> call = (Call<Tweeting>)app.tweetService.createTweet(tweet);
+            call.enqueue(this);
 
-            Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
-            toast.show();
+            //Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
+            //toast.show();
             Log.v("Tweet", "Tweet Pressed!");
         }
         tweetText.setText("");
@@ -158,5 +175,18 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener {
                 //residence.tenant = name;
                 break;
         }
+    }
+
+    @Override
+    public void onResponse(Call<Tweeting> call, Response<Tweeting> response) {
+        Toast toast = Toast.makeText(this, "Tweet Tweeted", Toast.LENGTH_SHORT);
+        toast.show();
+        app.newTweet(response.body());
+    }
+
+    @Override
+    public void onFailure(Call<Tweeting> call, Throwable t) {
+        Toast toast = Toast.makeText(this, "Error making tweet", Toast.LENGTH_LONG);
+        toast.show();
     }
 }

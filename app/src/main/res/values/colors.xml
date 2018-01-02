@@ -119,6 +119,7 @@
     <color name="Fuchsia">#FF00FF</color>
     <!-- g -->
     <color name="Gold">#FFD700</color>
+    <color name="GraniteGray">#625F63</color>
     <color name="GreenYellow">#ADFF2F</color>
     <color name="gray">#808080</color>
     <color name="Goldenrod">#DAA520</color>

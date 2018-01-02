@@ -1,42 +1,48 @@
 <resources>
     <string name="app_name">MyTweetApp</string>
-    <string name="tweetText">What\'s happening?</string>
-    <string name="tweet">Tweet</string>
-    <string name="counter">140</string>
-    <string name="date" />
 
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <!-- Activity Welcome Strings -->
     <string name="welcomeLogin">Login</string>
     <string name="welcomeSignup">SignUp</string>
-    <string name="menuLogout">Logout</string>
-
     <string name="welcomeText">Welcome to MyTweet</string>
     <string name="welcomeMessage">See what\'s happening in the great WIT world right now!</string>
 
-    <string name="timeline">Timeline</string>
-    <string name="menuSettings">Settings</string>
+    <!-- Activity Login Strings -->
+    <string name="loginTitle">Login to MyTweet</string>
+    <string name="loginSubtitle">You must be registered</string>
+    <string name="loginSignIn">Sign In</string>
 
-    <string name="defaultTweet">No Tweets</string>
-
+    <!-- Activity Signup Strings -->
     <string name="signupTitle">Sign up for the MyTweetApp</string>
     <string name="signupSubtitle">Enter details below</string>
     <string name="signupFirstName">First Name</string>
     <string name="signupLastName">Last Name</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
     <string name="signupRegister">Register</string>
 
-    <string name="loginTitle">Login to MyTweet</string>
-    <string name="loginSubtitle">You must be registered</string>
-    <string name="loginEmail">Email</string>
-    <string name="loginPassword">Password</string>
-    <string name="loginSignIn">Sign In</string>
-
+    <!-- Activity Tweet Strings -->
+    <string name="tweetText">What\'s happening?</string>
+    <string name="tweet">Tweet</string>
+    <string name="counter">140</string>
     <string name="contact">Contact</string>
     <string name="sendEmail">Email Tweet</string>
     <string name="newTweet">My New Tweet</string>
+    <string name="date" />
 
+    <!-- Timeline Strings -->
+    <string name="defaultTweet">No Tweets</string>
+
+    <!-- Menu Strings -->
+    <string name="timeline">Timeline</string>
+    <string name="menuSettings">Settings</string>
+    <string name="menuLogout">Logout</string>
+
+    <!-- Settings Strings -->
     <string name="username_summary">Please enter your Email here</string>
     <string name="password_summary">Please enter your Password here</string>
 
+    <!-- Delete Tweet Strings -->
     <string name="deleteTweet">Delete Tweet</string>
 </resources>

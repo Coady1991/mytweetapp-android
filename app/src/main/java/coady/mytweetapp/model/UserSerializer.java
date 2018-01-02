@@ -1,5 +1,5 @@
 package coady.mytweetapp.model;
-
+/*
 import android.content.Context;
 
 import org.json.JSONArray;
@@ -69,3 +69,4 @@ public class UserSerializer {
         return users;
     }
 }
+*/
