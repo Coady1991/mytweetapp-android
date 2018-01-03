@@ -47,7 +47,6 @@ public class Timeline extends AppCompatActivity  implements Callback<List<Tweeti
     private TweetApp app;
     private TweetAdapter adapter;
     private String selectedItem;
-    private List<Tweeting> holder = new ArrayList<Tweeting>();
     private final Context context = this;
 
     @Override
@@ -122,6 +121,9 @@ public class Timeline extends AppCompatActivity  implements Callback<List<Tweeti
         switch (item.getItemId()) {
             //case R.id.tweet: startActivity(new Intent(this, Tweet.class));
                 //break;
+            case R.id.user:
+                startActivity(new Intent(this, UsersList.class));
+                break;
             case R.id.menuSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;

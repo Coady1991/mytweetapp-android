@@ -31,12 +31,17 @@
     <string name="newTweet">My New Tweet</string>
     <string name="date" />
 
-    <!-- Timeline Strings -->
+    <!-- Activity Timeline Strings -->
     <string name="defaultTweet">No Tweets</string>
+
+    <!-- Activity Users Srings -->
+    <string name="users">MyTweet Users</string>
+    <string name="follow">Follow</string>
 
     <!-- Menu Strings -->
     <string name="timeline">Timeline</string>
     <string name="menuSettings">Settings</string>
+    <string name="user">Users</string>
     <string name="menuLogout">Logout</string>
 
     <!-- Settings Strings -->

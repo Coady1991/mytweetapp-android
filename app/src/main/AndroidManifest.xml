@@ -54,6 +54,11 @@
             android:label="@string/app_name" >
         </activity>
 
+        <activity
+            android:name="coady.mytweetapp.activity.UsersList"
+            android:label="@string/app_name">
+        </activity>
+
     </application>
 
 </manifest>
