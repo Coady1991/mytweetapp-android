@@ -26,8 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static coady.mytweetapp.android.helpers.IntentHelper.navigateUp;
-
 /**
  * Created by Coady on 03/01/2018.
  */
@@ -95,6 +93,7 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
 
 class UserAdapter extends ArrayAdapter<User> {
     private Context context;
+    private TweetApp app;
     public List<User> users = new ArrayList<User>();
 
     public UserAdapter(Context context, List<User> users) {
@@ -111,6 +110,15 @@ class UserAdapter extends ArrayAdapter<User> {
         User user = users.get(position);
         TextView userName = (TextView) view.findViewById(R.id.userName);
         userName.setText(user.firstName + " " + user.lastName);
+
+        TextView button = (TextView) view.findViewById(R.id.follow);
+        if(app.currentUser.following != null) {
+            if(app.currentUser.following.contains(user._id)) {
+                button.setText("Unfollow");
+            } else {
+                button.setText("Follow");
+            }
+        }
 
         return view;
     }

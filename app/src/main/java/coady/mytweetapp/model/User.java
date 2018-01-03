@@ -3,6 +3,7 @@ package coady.mytweetapp.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Random;
 
 public class User {
@@ -13,6 +14,8 @@ public class User {
     public String lastName;
     public String email;
     public String password;
+    public List<String> following;
+    public List<String> followers;
 
 //    private static final String JSON_USERID    = "userId";
 //    private static final String JSON_FIRSTNAME = "firstName";
