@@ -167,7 +167,7 @@ class TweetAdapter extends ArrayAdapter<Tweeting> {
         View view = inflater.inflate(R.layout.row_layout, parent, false);
         Tweeting tweet = tweets.get(position);
 
-        // Sorts tweets with newest first
+        // Sorts tweets with newest first, but does not work because String date begins with day of week Mon, Tue etc.
         // https://stackoverflow.com/questions/2592501/how-to-compare-dates-in-java#answer-21085919
 //        Collections.sort(tweets, new Comparator<Tweeting>() {
 //            @Override

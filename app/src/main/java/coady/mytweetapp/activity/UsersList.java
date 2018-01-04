@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,7 +31,7 @@ import retrofit2.Response;
  * Created by Coady on 03/01/2018.
  */
 
-public class UsersList extends AppCompatActivity implements Callback<List<User>> {
+public class UsersList extends AppCompatActivity implements Callback<List<User>>, AdapterView.OnItemClickListener {
 
     private ListView listView;
     private TweetApp app;
@@ -41,13 +42,16 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userslist);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         app = (TweetApp) getApplication();
 
         listView = (ListView) findViewById(R.id.usersList);
         adapter = new UserAdapter(this, app.users);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
+        //follow = (Button) findViewById(R.id.follow);
+        //follow.setOnClickListener(this);
 
         Call<List<User>> call = (Call<List<User>>) app.tweetService.getAllUsers();
         call.enqueue(this);
@@ -58,6 +62,14 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
         getMenuInflater().inflate(R.menu.userslist_menu, menu);
         return true;
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Call<List<User>> call1 = (Call<List<User>>) app.tweetService.getAllUsers();
+//        call1.enqueue(this);
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -89,6 +101,57 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
         Toast toast = Toast.makeText(this, "Error retrieving users", Toast.LENGTH_LONG);
         toast.show();
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        final User user = adapter.getItem(position);
+        String userId = user._id;
+        if(app.currentUser.following != null) {
+            if(app.currentUser.following.contains(userId)) {
+                Call<User> call1 = (Call<User>) app.tweetService.unfollow(app.currentUser._id, userId);
+                call1.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        Toast toast = Toast.makeText(UsersList.this, "Unfollowed " + user.firstName + " " + user.lastName, Toast.LENGTH_LONG);
+                        toast.show();
+                        app.currentUser = response.body();
+                        startActivity(new Intent(UsersList.this, Timeline.class));
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast toast = Toast.makeText(UsersList.this, "Error unfollowing " + user.firstName + " " + user.lastName, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+            } else if (!app.currentUser.following.contains(userId)) {
+                Call<User> call1 = (Call<User>) app.tweetService.follow(app.currentUser._id, userId);
+                call1.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        Toast toast = Toast.makeText(UsersList.this, "Started following " + user.firstName + " " + user.lastName, Toast.LENGTH_LONG);
+                        toast.show();
+                        app.currentUser = response.body();
+                        startActivity(new Intent(UsersList.this, Timeline.class));
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast toast = Toast.makeText(UsersList.this, "Error following " + user.firstName + " " + user.lastName, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+            }
+        }
+    }
+
+    // Intended on using this with listener on the button(line 54 & 55) but it does not have the correct parameters
+    // as position and id needed
+//    @Override
+//    public void onClick(View view) {
+//
+//    }
+
 }
 
 class UserAdapter extends ArrayAdapter<User> {

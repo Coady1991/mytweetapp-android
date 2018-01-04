@@ -25,6 +25,9 @@ public interface TweetService
     @POST("/api/users")
     Call<User> createUser(@Body User User);
 
+    @POST("/api/users/authenticate")
+    Call<User> authenticate(@Body User user);
+
     @GET("/api/tweets")
     Call<List<Tweeting>> getAllTweets();
 
@@ -33,4 +36,10 @@ public interface TweetService
 
     @DELETE("/api/tweets/{id}")
     Call<String> deleteTweet(@Path("id") String id);
+
+    @POST("/api/users/{id}/follow")
+    Call<User> follow(@Path("id") String _id, @Body String user);
+
+    @POST("/api/users/{id}/unfollow")
+    Call<User> unfollow(@Path("id") String _id, @Body String user);
 }
