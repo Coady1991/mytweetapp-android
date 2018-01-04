@@ -2,6 +2,7 @@
 
 ## Built in conjunction with notes and labs from https://wit-ictskills-2017.github.io/mobile-app-dev/index.html
 
+## V1.0 App Features
 
 ### Main Features
 * Users able to SignUp/Login (Users persisted)
@@ -52,3 +53,24 @@
 #### Logout
 * Logs the user out of the activity and they are brought back to the Welcome activity
 * If they press back they are brought back to the phones home screen and not back to the activity they logged out from (The app stays running)
+
+## V1.1 App Features
+
+### Added Features
+* Update to look of App
+* Users and Tweets retrieved from Web App database through API
+* If Users or Tweets are created through the App they are stored in the database of the Web App and can be seen on the Web App
+* Users can follow/unfollow other users
+* When signing up, passwords are hashed and salted through Web App API which allows login for same user on the Web App
+* Hashed and salted passwords are checked through the Web App API when logging into the Android App
+
+* __NOTE:__ Currently unable to delete tweets from timeline
+
+#### Logins for Users
+email: homer@simpson.com
+password: secret
+
+email: bart@simpson.com
+password: secret
+
+#### Corresponding Web App deployed here https://mytweetapp-12.herokuapp.com/
