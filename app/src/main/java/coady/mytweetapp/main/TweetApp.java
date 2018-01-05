@@ -1,9 +1,11 @@
 package coady.mytweetapp.main;
 
 import android.app.Application;
+import android.location.Location;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,6 +28,12 @@ public class TweetApp extends Application {
     public static User             currentUser;
     public List<Tweeting> tweets = new ArrayList<Tweeting>();
     public List<User> users = new ArrayList<User>();
+
+
+    /* Client used to interact with Google APIs. */
+    private static  TweetApp mInstance;
+    public Location mCurrentLocation;
+    public GoogleApiClient mGoogleApiClient;
 
     @Override
     public void onCreate() {
@@ -63,6 +71,9 @@ public class TweetApp extends Application {
         return currentUser._id;
     }
 
+    public static synchronized TweetApp getInstance() {
+        return mInstance;
+    }
 
 //    private static final String FILENAME = "userportfolio.json";
 //    public UserPortfolio userPortfolio;
@@ -76,13 +87,10 @@ public class TweetApp extends Application {
 //        Log.v("Tweet", "MyTweet App Started!");
 //    }
 //
-
-//
 //    public void newUser(User user) {
 //        users.add(user);
 //        userPortfolio.users = users;
 //        userPortfolio.saveUsers();
 //    }
 //
-
 }
