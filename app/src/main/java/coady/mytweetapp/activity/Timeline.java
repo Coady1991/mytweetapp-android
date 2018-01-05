@@ -124,6 +124,9 @@ public class Timeline extends AppCompatActivity  implements Callback<List<Tweeti
             case R.id.user:
                 startActivity(new Intent(this, UsersList.class));
                 break;
+            case R.id.map:
+                startActivity(new Intent(this, Map.class));
+                break;
             case R.id.menuSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;

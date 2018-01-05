@@ -80,6 +80,9 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
             case R.id.timeline:
                 startActivity(new Intent(this, Timeline.class));
                 break;
+            case R.id.map:
+                startActivity(new Intent(this, Map.class));
+                break;
             case R.id.menuSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;

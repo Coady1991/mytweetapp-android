@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import coady.mytweetapp.R;
+import coady.mytweetapp.activity.Map;
 import coady.mytweetapp.activity.Timeline;
 import coady.mytweetapp.activity.Tweet;
 import coady.mytweetapp.activity.UsersList;
@@ -40,6 +41,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case R.id.user:
                 startActivity(new Intent(this, UsersList.class));
+                break;
+            case R.id.map:
+                startActivity(new Intent(this, Map.class));
                 break;
             case R.id.menuLogout:   startActivity(new Intent(this, Welcome.class));
                 break;
