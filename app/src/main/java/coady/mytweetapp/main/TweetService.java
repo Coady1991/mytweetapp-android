@@ -45,4 +45,7 @@ public interface TweetService
 
     @GET("/api/users/{id}/followingTimeline")
     Call<List<Tweeting>> getFollowingTimeline(@Path("id") String id);
+
+    @GET("/api/users/{id}/tweets")
+    Call<List<Tweeting>> myTweets(@Path("id") String id);
 }

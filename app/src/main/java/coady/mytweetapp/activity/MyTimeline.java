@@ -48,7 +48,7 @@ public class MyTimeline extends AppCompatActivity implements Callback<List<Tweet
         adapter = new MyTimelineAdapter(this, app.tweets);
         listView.setAdapter(adapter);
 
-        Call<List<Tweeting>> call = (Call<List<Tweeting>>) app.tweetService.getFollowingTimeline(app.currentUser._id);
+        Call<List<Tweeting>> call = (Call<List<Tweeting>>) app.tweetService.myTweets(app.currentUser._id);
         call.enqueue(this);
     }
 
