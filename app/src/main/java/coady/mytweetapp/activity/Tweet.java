@@ -157,15 +157,25 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener, Ca
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
-            case R.id.contact : selectContact(this, REQUEST_CONTACT);
+    public void onClick(View view) {
+
+        String text = tweetText.getText().toString();
+
+        switch (view.getId()) {
+            case R.id.contact :
+                selectContact(this, REQUEST_CONTACT);
                 break;
+
             case R.id.sendEmail:
-                sendEmail(this, emailAddress,
-                        getString(R.string.newTweet), tweetText.getText().toString());
+                if(text.equals("")) {
+                    Toast toast = Toast.makeText(this, "Tweet must contain characters before E-mailing", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+                if (!text.equals("")) {
+                    sendEmail(this, emailAddress,
+                            getString(R.string.newTweet), tweetText.getText().toString());
+                }
         }
     }
 
