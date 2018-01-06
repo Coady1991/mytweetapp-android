@@ -43,6 +43,7 @@
     <string name="menuSettings">Settings</string>
     <string name="user">Users</string>
     <string name="menuLogout">Logout</string>
+    <string name="followingTimeline">Following Timeline</string>
 
     <!-- Settings Strings -->
     <string name="username_summary">Please enter your Email here</string>

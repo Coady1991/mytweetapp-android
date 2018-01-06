@@ -42,4 +42,7 @@ public interface TweetService
 
     @POST("/api/users/{id}/unfollow")
     Call<User> unfollow(@Path("id") String _id, @Body String user);
+
+    @GET("/api/users/{id}/followingTimeline")
+    Call<List<Tweeting>> getFollowingTimeline(@Path("id") String id);
 }
