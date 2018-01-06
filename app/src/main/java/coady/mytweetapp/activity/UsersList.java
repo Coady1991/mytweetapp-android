@@ -181,8 +181,10 @@ class UserAdapter extends ArrayAdapter<User> {
         if(app.currentUser.following != null) {
             if(app.currentUser.following.contains(user._id)) {
                 button.setText("Unfollow");
+                button.setBackgroundColor(0xFFD7263D);
             } else {
                 button.setText("Follow");
+                button.setBackgroundColor(0xFF6EEB83);
             }
         }
 
