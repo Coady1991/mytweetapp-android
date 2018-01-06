@@ -63,13 +63,13 @@ public class UsersList extends AppCompatActivity implements Callback<List<User>>
         return true;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        Call<List<User>> call1 = (Call<List<User>>) app.tweetService.getAllUsers();
-//        call1.enqueue(this);
-//        adapter.notifyDataSetChanged();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Call<List<User>> call1 = (Call<List<User>>) app.tweetService.getAllUsers();
+        call1.enqueue(this);
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -182,6 +182,7 @@ class UserAdapter extends ArrayAdapter<User> {
             if(app.currentUser.following.contains(user._id)) {
                 button.setText("Unfollow");
                 button.setBackgroundColor(0xFFD7263D);
+                button.setTextColor(0xFFFFFFFF);
             } else {
                 button.setText("Follow");
                 button.setBackgroundColor(0xFF6EEB83);

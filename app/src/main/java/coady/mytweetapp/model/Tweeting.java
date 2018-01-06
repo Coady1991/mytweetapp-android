@@ -14,12 +14,15 @@ public class Tweeting {
     public String date;
     public String tweeter;
     //private Long id;
+    public Marker marker = new Marker();
 
-    public Tweeting(String tweet, String date) {
+    public Tweeting(String tweet, String date) { //double lat, double lng
         //id = unsignedLong();
         this.tweet = tweet;
         this.date = date;
         tweeter = TweetApp.getCurrentUser();
+        //this.marker.coords.latitude = lat;
+        //this.marker.coords.longitude = lng;
     }
     public String getTweetId(){
         return _id;

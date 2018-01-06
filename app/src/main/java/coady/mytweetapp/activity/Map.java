@@ -26,7 +26,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.Manifest;
+
+import java.util.List;
+
 import coady.mytweetapp.R;
+import coady.mytweetapp.model.Tweeting;
 
 //https://stackoverflow.com/questions/34582370/how-can-i-show-current-location-on-a-google-map-on-android-marshmallow/34582595
 
@@ -67,7 +71,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
-        mGoogleMap=googleMap;
+        mGoogleMap = googleMap;
         //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
@@ -212,5 +216,22 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
             // permissions this app might request
         }
     }
+
+
+
+    public void addTweet(List<Tweeting> list) {
+        for(Tweeting t: list) {
+            mGoogleMap.addMarker(new MarkerOptions()
+            .position(new LatLng(t.marker.coords.latitude, t.marker.coords.longitude))
+            .title(t.tweet)
+            .snippet(t.date)
+            .snippet(t.tweeter));
+        }
+    }
+
+//    @Override
+//    public void setList(List list) {
+//        addTweet(list);
+//    }
 
 }
