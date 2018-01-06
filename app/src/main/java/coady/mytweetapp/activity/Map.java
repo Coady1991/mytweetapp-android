@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,6 +33,8 @@ import java.util.List;
 import coady.mytweetapp.R;
 import coady.mytweetapp.model.Tweeting;
 
+import static coady.mytweetapp.android.helpers.IntentHelper.navigateUp;
+
 //https://stackoverflow.com/questions/34582370/how-can-i-show-current-location-on-a-google-map-on-android-marshmallow/34582595
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback,
@@ -53,6 +56,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
         setContentView(R.layout.activity_map);
 
         getSupportActionBar().setTitle("MyTweet Map");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
@@ -66,6 +70,16 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                navigateUp(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -229,6 +243,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
         }
     }
 
+    // This method possibly needs a Map Fragment to be implemented and the use of Volley
 //    @Override
 //    public void setList(List list) {
 //        addTweet(list);

@@ -50,6 +50,12 @@
             android:name=".activity.UsersList"
             android:label="@string/app_name"></activity>
 
+        <activity android:name=".activity.Map">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="coady.mytweetapp.activity.Tweet" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -57,7 +63,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".activity.Map"></activity>
+
     </application>
 
 </manifest>
