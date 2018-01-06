@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import coady.mytweetapp.R;
 import coady.mytweetapp.activity.FollowingTimeline;
 import coady.mytweetapp.activity.Map;
+import coady.mytweetapp.activity.MyTimeline;
 import coady.mytweetapp.activity.Timeline;
 import coady.mytweetapp.activity.Tweet;
 import coady.mytweetapp.activity.UsersList;
@@ -39,6 +40,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case R.id.timeline:
                 startActivity(new Intent(this, Timeline.class));
+                break;
+            case R.id.myTimeline:
+                startActivity(new Intent(this, MyTimeline.class));
                 break;
             case R.id.followingTimeline:
                 startActivity(new Intent(this, FollowingTimeline.class));

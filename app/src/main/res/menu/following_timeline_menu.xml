@@ -11,6 +11,11 @@
         android:title="@string/timeline" />
 
     <item
+        android:id="@+id/myTimeline"
+        android:orderInCategory="100"
+        android:title="@string/mytimeline" />
+
+    <item
         android:id="@+id/user"
         android:orderInCategory="100"
         android:title="@string/user" />

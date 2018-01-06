@@ -60,6 +60,10 @@
             android:name=".activity.FollowingTimeline"
             android:label="@string/followingTimeline"></activity>
 
+        <activity
+            android:name=".activity.MyTimeline"
+            android:label="@string/mytimeline"></activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

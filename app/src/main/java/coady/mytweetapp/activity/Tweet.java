@@ -128,6 +128,9 @@ public class Tweet extends AppCompatActivity implements View.OnClickListener, Ca
             case R.id.timeline:
                 startActivity(new Intent(this, Timeline.class));
                 break;
+            case R.id.myTimeline:
+                startActivity(new Intent(this, MyTimeline.class));
+                break;
             case R.id.followingTimeline:
                 startActivity(new Intent(this, FollowingTimeline.class));
                 break;

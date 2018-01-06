@@ -25,11 +25,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FollowingTimeline extends AppCompatActivity implements Callback<List<Tweeting>> {
+/**
+ * Created by Coady on 06/01/2018.
+ */
+
+public class MyTimeline extends AppCompatActivity implements Callback<List<Tweeting>> {
 
     private ListView listView;
     private TweetApp app;
-    private FollowTweetAdapter adapter;
+    private MyTimelineAdapter adapter;
     private String selectedItem;
     private final Context context = this;
 
@@ -41,7 +45,7 @@ public class FollowingTimeline extends AppCompatActivity implements Callback<Lis
         app = (TweetApp) getApplication();
 
         listView = (ListView) findViewById(R.id.timelineList);
-        adapter = new FollowTweetAdapter(this, app.tweets);
+        adapter = new MyTimelineAdapter(this, app.tweets);
         listView.setAdapter(adapter);
 
         Call<List<Tweeting>> call = (Call<List<Tweeting>>) app.tweetService.getFollowingTimeline(app.currentUser._id);
@@ -50,7 +54,7 @@ public class FollowingTimeline extends AppCompatActivity implements Callback<Lis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.following_timeline_menu, menu);
+        getMenuInflater().inflate(R.menu.mytimeline_menu, menu);
         return true;
     }
     @Override
@@ -62,8 +66,8 @@ public class FollowingTimeline extends AppCompatActivity implements Callback<Lis
             case R.id.timeline:
                 startActivity(new Intent(this, Timeline.class));
                 break;
-            case R.id.myTimeline:
-                startActivity(new Intent(this, MyTimeline.class));
+            case R.id.followingTimeline:
+                startActivity(new Intent(this, FollowingTimeline.class));
                 break;
             case R.id.user:
                 startActivity(new Intent(this, UsersList.class));
@@ -94,11 +98,11 @@ public class FollowingTimeline extends AppCompatActivity implements Callback<Lis
     }
 }
 
-class FollowTweetAdapter extends ArrayAdapter<Tweeting> {
+class MyTimelineAdapter extends ArrayAdapter<Tweeting> {
     private Context context;
     public List<Tweeting> tweets = new ArrayList<Tweeting>();
 
-    public FollowTweetAdapter(Context context, List<Tweeting> tweets) {
+    public MyTimelineAdapter(Context context, List<Tweeting> tweets) {
         super(context, R.layout.row_layout, tweets);
         this.context = context;
         this.tweets = tweets;

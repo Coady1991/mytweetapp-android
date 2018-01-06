@@ -34,9 +34,12 @@
     <!-- Activity Timeline Strings -->
     <string name="defaultTweet">No Tweets</string>
 
-    <!-- Activity Users Srings -->
+    <!-- Activity Users Strings -->
     <string name="users">MyTweet Users</string>
     <string name="follow">Follow</string>
+
+    <!-- Activity MyTimeline Strings -->
+    <string name="mytimeline">My Timeline</string>
 
     <!-- Menu Strings -->
     <string name="timeline">Timeline</string>
