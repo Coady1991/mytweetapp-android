@@ -66,6 +66,9 @@
 
 * __NOTE:__ Currently unable to delete tweets from timeline
 
+## V1.2 App Features
+* Google Maps API showing users current location
+
 #### Logins for Users
 email: homer@simpson.com
 password: secret
@@ -73,4 +76,5 @@ password: secret
 email: bart@simpson.com
 password: secret
 
+#### Corresponding Web App Repo https://github.com/Coady1991/mytweetapp-web
 #### Corresponding Web App deployed here https://mytweetapp-12.herokuapp.com/
