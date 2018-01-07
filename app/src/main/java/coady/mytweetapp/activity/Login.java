@@ -28,36 +28,37 @@ public class Login extends AppCompatActivity {
         TextView email     = (TextView)  findViewById(R.id.Email);
         TextView password  = (TextView)  findViewById(R.id.Password);
 
-        User user = new User(null, null, email.getText().toString(), password.getText().toString());
+        String userEmail = email.getText().toString();
+        String userPassword = password.getText().toString();
 
-        Call<User> call = (Call<User>) app.tweetService.authenticate(user);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
-                // Currently logs in a User but issue with
-                // java.lang.NullPointerException: Attempt to read from field 'java.lang.String coady.mytweetapp.model.User.email' on a null object reference
-                // when user enters correct email but wrong password
-                if (app.validUser(user.email, user.password)) {
-                    startActivity (new Intent(Login.this, Tweet.class));
-                } else {
-                    Toast toast = Toast.makeText(Login.this, "Invalid Credentials 1", Toast.LENGTH_SHORT);
+        if(userEmail.equals("") || userPassword.equals("")) {
+            Toast toast = Toast.makeText(this, "Email or Password is empty", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            User user = new User(null, null, email.getText().toString(), password.getText().toString());
+
+            Call<User> call = (Call<User>) app.tweetService.authenticate(user);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    User user = response.body();
+                    // Currently logs in a User but issue with
+                    // java.lang.NullPointerException: Attempt to read from field 'java.lang.String coady.mytweetapp.model.User.email' on a null object reference
+                    // when user enters correct email but wrong password
+                    if (app.validUser(user.email, user.password)) {
+                        startActivity(new Intent(Login.this, Tweet.class));
+                    } else {
+                        Toast toast = Toast.makeText(Login.this, "Invalid Credentials 1", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast toast = Toast.makeText(Login.this, "Invalid Credentials 2", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast toast = Toast.makeText(Login.this, "Invalid Credentials 2", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-//        if (app.validUser(email.getText().toString(), password.getText().toString())) {
-//            startActivity (new Intent(this, Tweet.class));
-//        } else {
-//            Toast toast = Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT);
-//            toast.show();
-//        }
+            });
+        }
     }
 }
