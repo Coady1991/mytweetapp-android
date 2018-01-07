@@ -1,5 +1,8 @@
 # mytweetapp-android
 
+## Name: Niall Coady
+## Student No. 20041428
+
 ## Built in conjunction with notes and labs from https://wit-ictskills-2017.github.io/mobile-app-dev/index.html
 
 ## V1.0 App Features
